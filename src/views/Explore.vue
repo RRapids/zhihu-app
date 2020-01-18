@@ -25,7 +25,7 @@
 			<div class="column" v-for="(item,index) in roundTables" :key="index">
 				<div class="card">
 					<img :src="item.banner">
-					<h3>{{item.name}}</h3>
+					<h3 class="img_name">{{item.name}}</h3>
 					<p class="meta">{{item.includeCount}}位嘉宾参与</p>
 				</div>
 			</div>
@@ -64,9 +64,9 @@
 <style lang="scss" scoped>
 	.row {
 		column-count: 2;
-		margin-left: 10%;
-		margin-right: 10%;
-
+		margin-left: 15%;
+		margin-right: 15%;
+		background-color: white;
 	}
 
 	.column {
@@ -80,11 +80,18 @@
 			break-inside: avoid;
 
 			img {
-				width:500px;
-				height:200px;
+				width: 450px;
+				height: 200px;
 				border-radius: 10px;
 			}
 		}
+	}
+
+	.img_name {
+		position: relative;
+		padding-left: 20px;
+		top: -170px;
+		left: 0;
 	}
 
 	.footer {
@@ -107,7 +114,7 @@
 	}
 
 	.title {
-		margin-left: 10%;
+		margin-left: 15%;
 	}
 
 	.meta {
