@@ -2,7 +2,6 @@
 	<div class="banner">
 		<img src="../assets/image/heart.png" alt="">
 		<h3>全部专题</h3>
-
 		<div class="container">
 			<div class="row" v-for="(item,index) in specials" :key="index">
 				<div class="col-4"><img :src="item.banner"></div>
@@ -17,7 +16,6 @@
 			</div>
 		</div>
 	</div>
-
 </template>
 
 <script>
