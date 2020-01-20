@@ -19,7 +19,7 @@
 		<div class="footer">
 			<router-link to="/special/all" class="item">查看更多专题 ></router-link>
 		</div>
-		<!-- //圆桌部分 -->
+		<!-- //部分圆桌 -->
 		<h2 class="title">圆桌讨论</h2>
 		<div class="row">
 			<div class="column" v-for="(item,index) in roundTables" :key="index">
@@ -34,6 +34,29 @@
 		<div class="footer">
 			<router-link to="/roundTable/all" class="item">查看更多圆桌 ></router-link>
 		</div>
+		<!-- 收藏页 -->
+		<div>
+			<h2 class="title">热门收藏夹</h2>
+		</div>
+		<div class="row">
+			<div class="favorite_card" v-for="(item,index) in favorites" :key="index">
+				<div class="card_top">
+					<h3>{{item.title}}</h3>
+					<ul>
+						<li><img :src="item.creatorAvatar"></li>
+						<li><p>{{item.creatorName}}</p></li>
+						<li><p style="color: rgb(153,153,153);">创建 | {{item.followers}} 人关注</p></li>
+					</ul>
+					<button class="favorite_button">关注收藏夹</button>
+				</div>
+				<div class="card_bottom">
+					<h4>{{item.questionTitle}}</h4>
+					<p class="answer_content">{{item.answerAuthorName}}：{{item.answerContent}}</p>
+					<p class="vote_style">{{item.voteupCount}} 赞同 · {{item.commentCount}} 评论</p>
+					<p class="total">已收藏{{item.totalCount}}条内容  ></p>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -42,8 +65,12 @@
 		name: 'explore',
 		data() {
 			return {
+				//专题
 				specials: [],
-				roundTables: []
+				//圆桌
+				roundTables: [],
+				//收藏
+				favorites: []
 			};
 		},
 		created() {
@@ -57,44 +84,111 @@
 				console.log(res.data.data.length);
 				this.roundTables = res.data.data;
 			});
+			//收藏
+			this.axios.get('http://localhost:8080/api/favorite').then(res => {
+				console.log(res.data.data.length);
+				this.favorites = res.data.data;
+			});
 		}
 	};
 </script>
 
 <style lang="scss" scoped>
 	.row {
-		column-count: 2;
-		margin-left: 15%;
-		margin-right: 15%;
-		background-color: white;
+		top: 20px;
+		width: 70%;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-template-rows: auto auto;
 	}
 
 	.column {
 		.card {
-			display: inline-block;
 			background-color: white;
-			padding: 20px;
-			margin-top: 20px;
+			margin-left: 15px;
+			margin-bottom: 20px;
+			padding: 10px 10px 10px 10px;
 			overflow: auto;
 			border-radius: 10px;
 			break-inside: avoid;
 
 			img {
-				width: 450px;
+				width: 100%;
 				height: 200px;
 				border-radius: 10px;
 			}
 		}
 	}
 
-	.img_name {
-		position: relative;
-		padding-left: 20px;
-		top: -170px;
-		left: 0;
+	.favorite_card {
+		background-color: white;
+		margin-left: 15px;
+		margin-bottom: 20px;
+		padding: 10px 10px 10px 10px;
+		overflow: auto;
+		border-radius: 10px;
+		break-inside: avoid;
+
+		.card_top {
+			height: 90px;
+			border-bottom: 1px solid #d6d6d6;
+		}
+		.card_bottom{
+			height: 150px;
+		}
+		img {
+			// float: left;
+			margin-left: -40px;
+		}
 	}
 
+	li {
+		float: left;
+		display: inline;
+	}
+
+	.img_name {
+		// position: relative;
+		padding-left: 20px;
+		// top: -170px;
+		left: 0;
+	}
+	.vote_style{
+		font-size: 12px;
+		color: #8d8d8d;
+	}
+	.favorite_button{
+		height: 30px;
+		width: 100px;
+		padding: 3px;
+		font-weight: bold;
+		border: none;
+		background-color: rgb(235, 245, 255);
+		color: rgb(0, 132, 255);
+		text-decoration: none;
+		display: inline-block;
+		cursor: pointer;
+		//位置
+		position: relative;
+		top: -45px;
+		right: -150px;
+	}
+	
+	.answer_content{
+		white-space: nowrap;
+		width: auto;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	
+	.total{
+		font-size: 15px;
+		font-weight: bold;
+		color: rgb(133,144,166);
+	}
 	.footer {
+		position: relative;
 		background-color: white;
 		width: 150px;
 		text-align: center;
