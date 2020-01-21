@@ -1,5 +1,5 @@
 <template>
-	<div class="container"><h3>等你来答</h3></div>
+	<div class="container"><h3>推荐</h3></div>
 	
 </template>
 

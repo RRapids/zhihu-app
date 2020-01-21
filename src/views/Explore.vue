@@ -1,7 +1,13 @@
 <template>
 	<div>
 		<!-- //专题部分 -->
-		<h2 class="title">最新专题</h2>
+		<div class="title">
+			<svg class="Zi Zi--LabelSpecial" fill="#0084ff" viewBox="0 0 24 24" width="36" height="36">
+				<path d="M7.667 3.667h11.466a1.2 1.2 0 0 1 1.2 1.2v13.066a2.4 2.4 0 0 1-2.4 2.4H6.467V4.867a1.2 1.2 0 0 1 1.2-1.2zM4.2 9.619h1.689v10.714H5.4a2.4 2.4 0 0 1-2.4-2.4V10.82a1.2 1.2 0 0 1 1.2-1.2zm5.178-2.38a.6.6 0 0 0-.6.6v.585a.6.6 0 0 0 .6.6h8.044a.6.6 0 0 0 .6-.6v-.586a.6.6 0 0 0-.6-.6H9.378zm0 3.57a.6.6 0 0 0-.6.6v.586a.6.6 0 0 0 .6.6h8.044a.6.6 0 0 0 .6-.6v-.585a.6.6 0 0 0-.6-.6H9.378zm0 3.572a.6.6 0 0 0-.6.6v.586a.6.6 0 0 0 .6.6h4.578a.6.6 0 0 0 .6-.6v-.586a.6.6 0 0 0-.6-.6H9.378z"
+				 fill-rule="evenodd"></path>
+			</svg>
+			<span>最新专题</span>
+		</div>
 		<div class="row">
 			<div class="column" v-for="(item,index) in specials" :key="index">
 				<div class="card">
@@ -20,7 +26,13 @@
 			<router-link to="/special/all" class="item">查看更多专题 ></router-link>
 		</div>
 		<!-- //部分圆桌 -->
-		<h2 class="title">圆桌讨论</h2>
+		<div class="title">
+			<svg class="Zi Zi--LabelRoundtable" fill="#0084ff" viewBox="0 0 24 24" width="36" height="36">
+				<path d="M12 21.333a9.333 9.333 0 1 1 0-18.666 9.333 9.333 0 0 1 0 18.666zm-.66-11.287c.332.385.609.77.775 1.21.055-.054.665-.99.72-1.706.055-.385.126-1.616-.443-2.367-.443-.496-1.219-.77-1.884-.55a1.788 1.788 0 0 0-1.33 2.036c.887.276 1.607.771 2.161 1.377zm-1.33 1.541c.443-.055.941-.11 1.44 0 0-.055-.484-.936-1.108-1.486-.665-.496-1.33-.973-2.216-.771-.72.11-1.723.77-1.55 2.092.11.606.553 1.101 1.162 1.321.61-.605 1.44-1.046 2.272-1.156zm2.714.165c.056 0 1.164.055 1.828-.165.72-.275 1.412-.68 1.773-1.541.11-.276.23-1.248-.443-1.872-.72-.716-1.717-.716-2.438-.165.222.825.063 1.966-.11 2.532-.103.348-.333.88-.61 1.211zm-1.44.55c-.056 0-1.33.056-1.828.221-.72.275-1.447.668-1.773 1.541-.11.276-.21 1.26.443 1.872.665.661 1.718.661 2.438.11-.295-.811-.166-1.761.055-2.477.166-.495.388-.936.665-1.266zm5.041-.99c-.665.605-1.44.99-2.327 1.211-.443.055-.941.11-1.44 0 0 .055.554.991 1.108 1.431.665.496 1.385.771 2.216.771.72-.11 1.678-.692 1.551-2.092-.055-.605-.554-1.101-1.108-1.321zm-3.656 2.642a3.475 3.475 0 0 1-.776-1.156c-.055.055-.665.991-.72 1.707-.055.385-.101 1.506.499 2.312.443.496 1.218.77 1.883.55.887-.275 1.496-1.1 1.33-2.036a5.38 5.38 0 0 1-2.216-1.377z"
+				 fill-rule="evenodd"></path>
+			</svg>
+			<span>圆桌讨论</span>
+		</div>
 		<div class="row">
 			<div class="column" v-for="(item,index) in roundTables" :key="index">
 				<div class="card">
@@ -35,8 +47,12 @@
 			<router-link to="/roundTable/all" class="item">查看更多圆桌 ></router-link>
 		</div>
 		<!-- 收藏页 -->
-		<div>
-			<h2 class="title">热门收藏夹</h2>
+		<div class="title">
+			<svg class="Zi--Star" fill="#0084ff" viewBox="0 0 24 24" width="32" height="32">
+				<path d="M5.515 19.64l.918-5.355-3.89-3.792c-.926-.902-.639-1.784.64-1.97L8.56 7.74l2.404-4.871c.572-1.16 1.5-1.16 2.072 0L15.44 7.74l5.377.782c1.28.186 1.566 1.068.64 1.97l-3.89 3.793.918 5.354c.219 1.274-.532 1.82-1.676 1.218L12 18.33l-4.808 2.528c-1.145.602-1.896.056-1.677-1.218z"
+				 fill-rule="evenodd"></path>
+			</svg>
+			<span class="top_content">热门收藏夹</span>
 		</div>
 		<div class="row">
 			<div class="favorite_card" v-for="(item,index) in favorites" :key="index">
@@ -44,8 +60,12 @@
 					<h3>{{item.title}}</h3>
 					<ul>
 						<li><img :src="item.creatorAvatar"></li>
-						<li><p>{{item.creatorName}}</p></li>
-						<li><p style="color: rgb(153,153,153);">创建 | {{item.followers}} 人关注</p></li>
+						<li>
+							<p>{{item.creatorName}}</p>
+						</li>
+						<li>
+							<p style="color: rgb(153,153,153);">创建 | {{item.followers}} 人关注</p>
+						</li>
 					</ul>
 					<button class="favorite_button">关注收藏夹</button>
 				</div>
@@ -53,9 +73,16 @@
 					<h4>{{item.questionTitle}}</h4>
 					<p class="answer_content">{{item.answerAuthorName}}：{{item.answerContent}}</p>
 					<p class="vote_style">{{item.voteupCount}} 赞同 · {{item.commentCount}} 评论</p>
-					<p class="total">已收藏{{item.totalCount}}条内容  ></p>
+					<h4>{{item.questionTitle}}</h4>
+					<p class="answer_content">{{item.answerAuthorName}}：{{item.answerContent}}</p>
+					<p class="vote_style">{{item.voteupCount}} 赞同 · {{item.commentCount}} 评论</p>
+					<p class="total">已收藏{{item.totalCount}}条内容 ></p>
 				</div>
 			</div>
+		</div>
+		<!-- //“更多收藏夹” -->
+		<div class="footer">
+			<router-link to="/favorite/all" class="item">查看更多收藏夹 ></router-link>
 		</div>
 	</div>
 </template>
@@ -134,9 +161,11 @@
 			height: 90px;
 			border-bottom: 1px solid #d6d6d6;
 		}
-		.card_bottom{
-			height: 150px;
+
+		.card_bottom {
+			height: 250px;
 		}
+
 		img {
 			// float: left;
 			margin-left: -40px;
@@ -154,11 +183,13 @@
 		// top: -170px;
 		left: 0;
 	}
-	.vote_style{
+
+	.vote_style {
 		font-size: 12px;
 		color: #8d8d8d;
 	}
-	.favorite_button{
+
+	.favorite_button {
 		height: 30px;
 		width: 100px;
 		padding: 3px;
@@ -174,28 +205,29 @@
 		top: -45px;
 		right: -150px;
 	}
-	
-	.answer_content{
+
+	.answer_content {
 		white-space: nowrap;
 		width: auto;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-	
-	.total{
+
+	.total {
 		font-size: 15px;
 		font-weight: bold;
-		color: rgb(133,144,166);
+		color: rgb(133, 144, 166);
 	}
+
 	.footer {
-		position: relative;
+		// position: relative;
 		background-color: white;
-		width: 150px;
+		width: 11%;
 		text-align: center;
-		margin-top: 20px;
+		// margin-top: 20px;
 		margin: 0 auto;
 		border-radius: 30px;
-		padding: 5px;
+		// padding: 5px;
 	}
 
 	.item {
@@ -208,7 +240,15 @@
 	}
 
 	.title {
+		margin-top: 50px;
 		margin-left: 15%;
+		margin-bottom: 20px;
+
+		span {
+			margin-left: 12px;
+			font-size: 25px;
+			font-weight: 600;
+		}
 	}
 
 	.meta {

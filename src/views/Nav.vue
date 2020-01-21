@@ -22,6 +22,10 @@
 				<li>
 					<router-link to="/login" class="abs-center-right">登录</router-link>
 				</li>
+				<li>
+					<input type="text" placeholder="2020春运的故事">
+				</li>
+				<button type="button" class="serarch_button">提问</button>
 			</ul>
 		</div>
 		<!-- 二级路由入口 -->
@@ -46,7 +50,7 @@
 	}
 
 	.nav {
-		height: 40px;
+		margin-bottom: 50px;
 	}
 
 	.logo {
@@ -72,11 +76,29 @@
 		top: 0;
 		width: 100%;
 	}
-
+	li input[type=text] {
+	    float: right;
+	    padding: 6px;
+	    border: none;
+	    margin-top: 10px;
+	    margin-left: 16px;
+	    font-size: 15px;
+		width: 300px;
+		background-color:#FFFFFF;
+	}
 	li {
 		float: left;
 	}
-
+	.serarch_button{
+		    z-index: 103;
+		    padding: 0 14px;
+			margin-top: 8px;
+		    margin-left: 16px;
+		    line-height: 30px;
+			border: none;
+			background-color: #0084ff;
+			color: #FFFFFF;
+	}
 	.abs-center-right {
 		position: absolute;
 		left: 1200px;
@@ -88,7 +110,7 @@
 		display: block;
 		color: #666;
 		text-align: center;
-		padding: 14px 16px;
+		padding: 14px 20px;
 		text-decoration: none;
 
 	}
