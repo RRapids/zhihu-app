@@ -6,6 +6,7 @@ import Explore from '../views/Explore.vue'
 import Special from '../views/Special.vue'
 import RoundTable from '../views/RoundTabel.vue'
 import Favorite from '../views/Favorite.vue'
+import Columns from '../views/Columns.vue'
 import Recommoned from '../views/Recommoned.vue'
 import Follow from '../views/Follow.vue'
 import Hot from '../views/Hot.vue'
@@ -69,6 +70,10 @@ const routes = [{
 	{
 		path: '/login',
 		component: Login
+	},
+	{
+		path: '/ZhuanLan',
+		component: Columns
 	}
 ]
 

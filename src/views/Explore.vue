@@ -84,6 +84,30 @@
 		<div class="footer">
 			<router-link to="/favorite/all" class="item">查看更多收藏夹 ></router-link>
 		</div>
+		<!-- //专栏部分 -->
+		<div class="title">
+			<svg class="Zi Zi--EditCircle" fill="#0084ff" viewBox="0 0 24 24" width="36" height="36">
+				<path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm4.043-15.524a.745.745 0 0 0-1.053.017l-6.857 7.071 2.237 2.17 6.857-7.071a.743.743 0 0 0-.016-1.052l-1.168-1.135zm-9.028 9.476l-.348 1.381 1.37-.39 1.274-.36-1.973-1.916-.323 1.285z"
+				 fill-rule="evenodd"></path>
+			</svg>
+			<span>专栏</span>
+		</div>
+		<div class="column_row">
+			<div class="column" v-for="(item,index) in columns" :key="index">
+				<div class="column_card">
+					<span class="column_img"><img :src="item.imageUrl" class="column_img" ></span>
+					<h4>{{item.title}}</h4>
+					<p class="vote_style">{{item.follower}}关注 · {{item.articlesCount}}文章</p>
+					<p class="answer_content">{{item.description}}</p>
+					<button class="column_btn">进入专栏</button>
+				</div>
+			</div>
+		</div>
+		<!-- //“更多专栏” -->
+		<div class="footer">
+			<router-link to="ZhuanLan" class="item">查看更多专栏 ></router-link>
+		</div>
+		<footer class="page_footer"></footer>
 	</div>
 </template>
 
@@ -97,7 +121,9 @@
 				//圆桌
 				roundTables: [],
 				//收藏
-				favorites: []
+				favorites: [],
+				//专栏
+				columns: []
 			};
 		},
 		created() {
@@ -116,6 +142,11 @@
 				console.log(res.data.data.length);
 				this.favorites = res.data.data;
 			});
+			//专栏
+			this.axios.get('http://localhost:8080/api/columns').then(res => {
+				console.log(res.data.data.length);
+				this.columns = res.data.data;
+			});
 		}
 	};
 </script>
@@ -130,8 +161,18 @@
 		grid-template-rows: auto auto;
 	}
 
+	.column_row {
+		top: 20px;
+		width: 70%;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 250px 250px 250px 250px;
+		grid-template-rows: auto;
+	}
+
 	.column {
 		.card {
+			display: inline-block;
 			background-color: white;
 			margin-left: 15px;
 			margin-bottom: 20px;
@@ -146,6 +187,41 @@
 				border-radius: 10px;
 			}
 		}
+	}
+
+	.column_card {
+		background-color: white;
+		padding: 30px 20px 20px 20px;
+		overflow: auto;
+		margin-left: 20px;
+		margin-bottom: 20px;
+		border-radius: 10px;
+		break-inside: avoid;
+		text-align: center;
+	}
+
+	.column_btn {
+		ursor: pointer;
+		background: none;
+		border: none;
+		outline: none;
+		-webkit-appearance: none;
+		font: inherit;
+		cursor: pointer;
+		padding: 0 16px;
+		height: 34px;
+		font-size: 14px;
+		color: #0084ff;
+		background-color: rgba(0, 132, 255, .08);
+		border-radius: 3px;
+		font-weight: 600;
+	}
+
+	.column_img {
+		height: 100px;
+		width: 100px;
+		border-radius: 100%;
+
 	}
 
 	.favorite_card {
@@ -163,7 +239,7 @@
 		}
 
 		.card_bottom {
-			height: 250px;
+			height: auto;
 		}
 
 		img {
@@ -171,7 +247,17 @@
 			margin-left: -40px;
 		}
 	}
-
+	.page_footer{
+		margin-top:64px;
+		display: flex;
+		-webkit-box-pack: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		align-items: center;
+		height: 24px;
+		font-size: 13px;
+		color: #8590a6;
+	}
 	li {
 		float: left;
 		display: inline;
@@ -207,10 +293,17 @@
 	}
 
 	.answer_content {
-		white-space: nowrap;
-		width: auto;
-		overflow: hidden;
+		margin-top: 20px;
+		height: 40px;
+		line-height: 20px;
+		font-size: 14px;
+		color: #444;
+		text-align: center;
+		display: -webkit-box;
 		text-overflow: ellipsis;
+		overflow: hidden;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 	}
 
 	.total {
