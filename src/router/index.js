@@ -64,16 +64,20 @@ const routes = [{
 				path: 'question/waiting',
 				component: () => import('../views/QuestionWaiting.vue'),
 
+			},
+			{
+				path: 'people/:url',
+				component: () => import('../views/People.vue'),
 			}
 		]
 	},
 	{
 		path: '/login',
-		component: Login
+		component: () => import('../views/Login.vue'),
 	},
 	{
 		path: '/ZhuanLan',
-		component: Columns
+		component: () => import('../views/Columns.vue')
 	}
 ]
 

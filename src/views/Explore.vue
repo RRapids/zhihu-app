@@ -26,25 +26,29 @@
 			<router-link to="/special/all" class="item">查看更多专题 ></router-link>
 		</div>
 		<!-- //部分圆桌 -->
-		<div class="title">
-			<svg class="Zi Zi--LabelRoundtable" fill="#0084ff" viewBox="0 0 24 24" width="36" height="36">
-				<path d="M12 21.333a9.333 9.333 0 1 1 0-18.666 9.333 9.333 0 0 1 0 18.666zm-.66-11.287c.332.385.609.77.775 1.21.055-.054.665-.99.72-1.706.055-.385.126-1.616-.443-2.367-.443-.496-1.219-.77-1.884-.55a1.788 1.788 0 0 0-1.33 2.036c.887.276 1.607.771 2.161 1.377zm-1.33 1.541c.443-.055.941-.11 1.44 0 0-.055-.484-.936-1.108-1.486-.665-.496-1.33-.973-2.216-.771-.72.11-1.723.77-1.55 2.092.11.606.553 1.101 1.162 1.321.61-.605 1.44-1.046 2.272-1.156zm2.714.165c.056 0 1.164.055 1.828-.165.72-.275 1.412-.68 1.773-1.541.11-.276.23-1.248-.443-1.872-.72-.716-1.717-.716-2.438-.165.222.825.063 1.966-.11 2.532-.103.348-.333.88-.61 1.211zm-1.44.55c-.056 0-1.33.056-1.828.221-.72.275-1.447.668-1.773 1.541-.11.276-.21 1.26.443 1.872.665.661 1.718.661 2.438.11-.295-.811-.166-1.761.055-2.477.166-.495.388-.936.665-1.266zm5.041-.99c-.665.605-1.44.99-2.327 1.211-.443.055-.941.11-1.44 0 0 .055.554.991 1.108 1.431.665.496 1.385.771 2.216.771.72-.11 1.678-.692 1.551-2.092-.055-.605-.554-1.101-1.108-1.321zm-3.656 2.642a3.475 3.475 0 0 1-.776-1.156c-.055.055-.665.991-.72 1.707-.055.385-.101 1.506.499 2.312.443.496 1.218.77 1.883.55.887-.275 1.496-1.1 1.33-2.036a5.38 5.38 0 0 1-2.216-1.377z"
-				 fill-rule="evenodd"></path>
-			</svg>
-			<span>圆桌讨论</span>
-		</div>
-		<div class="row">
-			<div class="column" v-for="(item,index) in roundTables" :key="index">
-				<div class="card">
-					<img :src="item.banner">
-					<h3 class="img_name">{{item.name}}</h3>
-					<p class="meta">{{item.includeCount}}位嘉宾参与</p>
+		<div class="row justify-content-center">
+			<div class="col-6" v-for="(item, index) in roundTables" :key="index">
+				<div class="roundtable-card m-3">
+					<button class="btn-follow-table" ref="btn">关注圆桌</button>
+					<div class="card-img-wrapper" ref="box">
+						<img :src="item.logo" ref="bgImg" />
+						<div class="mask" ref="mask1"></div>
+						<div class="mask" ref="mask2"></div>
+					</div>
+
+					<div class="info">
+						<h3 class="mb-4">{{ item.name }}</h3>
+						<p>越是前景光明，越要居安思危。打败你的并不一定是你的敌人，而是自己的故步自封。 而是自己的故步自封.而是自己的故步自封</p>
+					</div>
+					<div class="content">
+						<p>可以推荐几个值得长期投资的基金吗？</p>
+						<p class="meta">456个回答</p>
+						<p>可以推荐几个值得长期投资的基金吗？</p>
+						<p class="meta">456个回答</p>
+					</div>
 				</div>
 			</div>
-		</div>
-		<!-- //“所有圆桌” -->
-		<div class="footer">
-			<router-link to="/roundTable/all" class="item">查看更多圆桌 ></router-link>
+			<router-link to="roundTable/all" class="all">查看更多圆桌</router-link>
 		</div>
 		<!-- 收藏页 -->
 		<div class="title">
@@ -95,7 +99,7 @@
 		<div class="column_row">
 			<div class="column" v-for="(item,index) in columns" :key="index">
 				<div class="column_card">
-					<span class="column_img"><img :src="item.imageUrl" class="column_img" ></span>
+					<span class="column_img"><img :src="item.imageUrl" class="column_img"></span>
 					<h4>{{item.title}}</h4>
 					<p class="vote_style">{{item.follower}}关注 · {{item.articlesCount}}文章</p>
 					<p class="answer_content">{{item.description}}</p>
@@ -126,6 +130,7 @@
 				columns: []
 			};
 		},
+		mounted() {},
 		created() {
 			//获取最近专题
 			this.axios.get('http://localhost:8080/api/special').then(res => {
@@ -148,6 +153,66 @@
 				this.columns = res.data.data;
 			});
 		}
+		// created() {
+		// 	this.axios.get(this.$store.state.baseUrl + '/explore').then(res => {
+		// 		console.log(res);
+		// 		//将接口数组解析后分别存入四个数组
+		// 		this.specials = res.data.data.specials;
+		// 		this.roundTables = res.data.data.roundTables;
+		// 		this.favorites = res.data.data.favorites;
+		// 		this.columns = res.data.data.columns;
+		// 		this.$nextTick(() => {
+		// 			//获得循环中的引用对象，都将会是数组的形式
+		// 			let boxArr = this.$refs.box;
+		// 			let imgArry = this.$refs.bgImg;
+		// 			let btnArr = this.$refs.btn;
+		// 			let mask1Arr = this.$refs.mask1;
+		// 			let mask2Arr = this.$refs.mask2;
+		// 			//遍历，对每个对象进行处理
+		// 			for (var i = 0, len = boxArr.length; i < len; i++) {
+		// 				let box = boxArr[i];
+		// 				let img = imgArry[i];
+		// 				let btn = btnArr[i];
+		// 				let mask1 = mask1Arr[i];
+		// 				let mask2 = mask2Arr[i];
+		// 				//第三方库，可以获取图片的主色、次色等
+		// 				RGBaster.colors(img, {
+		// 					success: function(payload) {
+		// 						// payload.dominant是主色，payload.secondary是次色, payload.palette是调色板，含多个主要颜色数组,RGB形式表示
+		// 						this.dominant = payload.dominant;
+		// 						this.secondary = payload.secondary;
+		// 						// console.log('主色：' + payload.dominant);
+		// 						//去掉rgb的外层rgb字母和括号，得到112,34,56这样的值
+		// 						let str = payload.dominant.substring(4, payload.dominant.length - 1);
+		// 						//按逗号分割，得到字符串数组
+		// 						let strArr = str.split(',');
+		// 						//分别获得r,g,b的值，并转为整型
+		// 						let r = parseInt(strArr[0]);
+		// 						let g = parseInt(strArr[1]);
+		// 						let b = parseInt(strArr[2]);
+		// 						// console.log(r + '=>' + g + '=>' + b);
+		// 						//定义两个透明度的值
+		// 						let a1 = 0;
+		// 						let a2 = 0.5;
+		// 						//创建两个rgba颜色，用来生成遮罩层的渐变色
+		// 						let color1 = `rgba(${r},${g},${b},${a1})`;
+		// 						let color2 = `rgba(${r},${g},${b},${a2})`;
+		// 						// console.log('颜色1：' + color1);
+		// 						// console.log('颜色2：' + color2);
+		// 						//圆桌卡片顶部整宽部分背景色设置为图片主色
+		// 						box.style.backgroundColor = this.dominant;
+		// 						//右侧logo图覆盖两层蒙版，使用以下渐变色规则
+		// 						mask1.style.background = 'linear-gradient(to right,' + this.dominant + ' 0%,' + color1 + ' 100%)';
+		// 						mask2.style.background = 'linear-gradient(to right,' + color2 + ' 0%,' + color1 + ' 100%)';
+		// 						//关注按钮的文字颜色，使用图片主色
+		// 						btn.style.color = this.dominant;
+		// 					} 
+		// 				});
+		// 			}
+		// 		});
+		// 	});
+		// },
+		// methods: {}
 	};
 </script>
 
@@ -247,8 +312,9 @@
 			margin-left: -40px;
 		}
 	}
-	.page_footer{
-		margin-top:64px;
+
+	.page_footer {
+		margin-top: 64px;
 		display: flex;
 		-webkit-box-pack: center;
 		justify-content: center;
@@ -258,6 +324,7 @@
 		font-size: 13px;
 		color: #8590a6;
 	}
+
 	li {
 		float: left;
 		display: inline;
